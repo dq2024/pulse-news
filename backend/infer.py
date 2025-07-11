@@ -15,7 +15,7 @@ sentiment = pipeline(
     "sentiment-analysis",
     model=os.getenv(
         "SENTIMENT_MODEL",
-        "distilbert-base-uncased-finetuned-sst-2-english"
+        "siebert/sentiment-roberta-large-english"
     )
 )
 
