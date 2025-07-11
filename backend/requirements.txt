@@ -1,0 +1,8 @@
+redis
+praw
+python-dotenv
+transformers
+torch
+fastapi
+uvicorn[standard]
+pydantic
