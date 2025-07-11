@@ -94,7 +94,6 @@ def process_buffer():
         else:
             time.sleep(1)
 
-# --- Endpoints ----------------------------------------------
 
 @app.post("/predict", response_model=PredictResponse)
 def predict(req: PredictRequest):
@@ -132,8 +131,8 @@ def get_stats(window: int = Query(60, ge=1, le=1440)):
     for raw in raw_list:
         obj = json.loads(raw)
         ts = obj.get("created_utc", 0)
-        # if ts < cutoff_ts:
-        #     continue
+        if ts < cutoff_ts:
+            continue
         total += 1
         if obj["label"] == "POSITIVE":
             pos += 1

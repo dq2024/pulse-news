@@ -6,26 +6,38 @@ import praw
 from dotenv import load_dotenv
 load_dotenv()
 
-# — Load credentials from environment —
 reddit = praw.Reddit(
     client_id=os.getenv("REDDIT_CLIENT_ID"),
     client_secret=os.getenv("REDDIT_CLIENT_SECRET"),
     user_agent=os.getenv("REDDIT_USER_AGENT")
 )
 
-# — Redis connection (default localhost:6379) —
 r = redis.Redis(
     host=os.getenv("REDIS_HOST", "localhost"),
     port=int(os.getenv("REDIS_PORT", 6379)),
     db=0,
 )
 
-subreddit = reddit.subreddit("news")
+# subs = ["news", "worldnews", "technology", "politics", "science"]
+subs = [
+  "news",
+  "politics",
+  "politicaldebate",
+  "politicaldiscussion",
+  "worldnews",
+  "technology",
+  "science",
+  "artificial",
+  "artificialintelligence",
+  "geopolotics"
+]
+
+subreddit = reddit.subreddit("+".join(subs))
 buffer_key = "news_buffer"
 
 def stream_and_buffer():
     print("Streaming r/news submissions into Redis…")
-    for submission in subreddit.stream.submissions(skip_existing=False):
+    for submission in subreddit.stream.submissions(skip_existing=True):
         payload = {
             "id": submission.id,
             "title": submission.title,
