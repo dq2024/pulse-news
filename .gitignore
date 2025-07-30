@@ -1,3 +1,4 @@
 .env
 backend/venv
 fontend/package-lock.json
+frontend/node_modules
