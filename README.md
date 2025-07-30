@@ -31,12 +31,12 @@ This project implements an end-to-end machine learning engineering pipeline that
    ```bash
    git clone https://github.com/<your-username>/twitter-sentiment-dashboard.git
    cd twitter-sentiment-dashboard
+   brew services start redis
    ```
 
 2. **Configure environment variables**
 
-   - Copy `.env.example` to `.env`
-   - Set Twitter API keys, Redis/Kafka endpoints, and other settings.
+   - Set Twitter API keys, Redis/Kafka endpoints, and other settings in `.env` file
 
 3. **Local development**
 
@@ -47,11 +47,6 @@ This project implements an end-to-end machine learning engineering pipeline that
    - Backend at `http://localhost:8000`
    - Frontend at `http://localhost:3000`
 
-4. **Run tests**
-
-   ```bash
-   pytest tests/
-   ```
 
 ---
 
